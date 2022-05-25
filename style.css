@@ -1,0 +1,47 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.city{
+    font-size: 32px;
+}
+
+.date{
+    font-size: 16px;
+}
+
+.container__temp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(81, 180, 247, 0.2);
+    color: #383535;
+    cursor: pointer;
+    font-size: 100px;
+    font-weight: 900;
+    text-shadow:  2px 3px rgba(62, 144, 179, 0.2);
+}
+
+.weather{
+    font-size: 32px;
+}
+.hi__low{
+    font-size: 22px;
+}
+
+.cloud__icon{
+    font-size: 8rem;
+}
+.icon__celcius{
+    font-size: 40px;
+    padding-bottom: 3rem;
+}
