@@ -24,42 +24,63 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <section class="container-fluid p-0 m-0 d-flex justify-content-center">
-      <div class="card text-center shadow-lg" style="width: 28rem">
+    <div class="container-fluid p-0 mt-4 container-sm d-flex justify-content-center">
 
-        <nav class="navbar bg-light">
-          <div class="container-fluid">
-            <a href="" class="navbar-brand"><i class="ri-github-line"></i></a>
-            <a href="" class="navbar-brand"><i class="ri-whatsapp-line"></i></a>
-            <a href="" class="navbar-brand"><i class="ri-mail-send-line"></i></a>
-            <form class="d-flex mx-md-5" role="search">
-              <input class="form_control mx-xl-n4" type="search" placeholder="Digite nome da cidade" aria-label="Search">
-              <button class="btn btn-outline-success mx-xl-4" type="submit">Search</button>
-            </form>
+      <div class="card text-center shadow-lg" style="width: 26rem;">
+  
+        <div class="card-header bg-white text-dark font-weight-bold">
+          TEMPO E TEMPERATURA
+          <div class="input-group ">
+            <input type="text" class="form-control bg-light" placeholder="digite o nome da cidade" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button type="button" class="btn btn-outline-warning text-dark" type="button" id="button-addon2">Search
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
           </div>
-        </nav>
+        </div>
 
         <div class="card-body">
           <div class="city">Cidade Exemplo, BR</div>
-          <div class="date">Domingo, 30 Novembro 2022</div>
-          <div class="container__icon">
-            <i class="ri-cloudy-2-line cloud__icon"></i>
+          <div class="date">Terça, 1 Dezembro 2020</div>
+          <div class="container-img">
+            <img src="./icons/unknown.png">
           </div>
-          <div class="container__temp my-1 mx-4">
+          <div class="container-temp mx-4 my-3">
             <div>22</div>
-            <i class="ri-celsius-fill icon__celcius"></i>
+            <span>°c</span>
           </div>
-          <div class="weather">nublado</div>
-          <div class="low__high">22°C / 23°C</div>
-          <!-- <h4 class="card-title">Temperatura atual</h4> -->
+          <div class="weather py-2">Nublado</div>
+          <div class="low-high">22°c / 23°c</div>
         </div>
 
-          <div class="card__footer d-flex justify-content-center">
-            <span>JoãoChrisostomo<br>
-            ©Direitos autorais reservado</span>
-          </div>
+        <div class="card-footer bg-white">
+          <div>
+            <div>JoaoChrisostomo</div>
+            <div>©todos os direitos reservados</div>
+            <div>
+              <a>
+                <i class="ri-twitter-fill text-dark"></i>
+              </a>
+              <a href="">
+                <i class="ri-facebook-fill text-dark"></i>
+              </a>
+              <a href="">
+                <i class="ri-instagram-fill text-dark"></i>
+              </a>
+              <a href="">
+                <i class="ri-linkedin-box-fill text-dark"></i>
+              </a>
+              <a href="">
+                <i class="ri-github-fill text-dark"></i>
+              </a>
+              <a href="">
+                <i class="ri-whatsapp-fill text-dark"></i>
+              </a>
+            </div>
+        </div>
       </div>
-    </section>
+    </div>
 
 
 

@@ -4,48 +4,36 @@
     box-sizing: border-box;
 }
 
-body{
-    width: 100vw;
-    height: 100vh;
-    font-family: 'Roboto', sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
 
+body{
+    font-family: 'Arvo', serif;
+}
 
 .city{
-    font-size: 26px;
+    font-size: 32px;
 }
 
-.date{
+.date {
     font-size: 16px;
 }
 
-.container__temp{
+.container-temp{
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: rgba(81, 180, 247, 0.2);
-    color: #383535;
+    background-color: rgba(244, 208, 63, 0.2);
+    box-shadow: 5px 6px rgba(0, 0, 0, 0.6);
     cursor: pointer;
-    font-size: 80px;
+
+    font-size: 90px;
     font-weight: 900;
-    text-shadow:  2px 3px rgba(62, 144, 179, 0.2);
+    text-shadow: 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .weather{
     font-size: 32px;
 }
-.hi__low{
+
+.low-high {
     font-size: 22px;
-}
-
-.cloud__icon{
-    font-size: 8rem;
-}
-.icon__celcius{
-    font-size: 40px;
-    padding-bottom: 3rem;
-}
-
-.footer{
-    background-color: #ebe7e7;
 }
