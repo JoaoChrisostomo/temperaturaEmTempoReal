@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -6,11 +6,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
 
-body{
+body {
     font-family: 'Arvo', serif;
 }
 
-.city{
+.city {
     font-size: 32px;
 }
 
@@ -18,22 +18,116 @@ body{
     font-size: 16px;
 }
 
-.container-temp{
+.container-temp {
     display: flex;
     justify-content: center;
-    background-color: rgba(244, 208, 63, 0.2);
-    box-shadow: 5px 6px rgba(0, 0, 0, 0.6);
+    background-color: rgba(63, 147, 244, 0.2);
     cursor: pointer;
-
-    font-size: 90px;
+    font-size: 100px;
     font-weight: 900;
-    text-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-.weather{
+.weather {
     font-size: 32px;
 }
 
 .low-high {
     font-size: 22px;
+}
+
+
+.btnOpenModal {
+    font-size: 1.3rem;
+    margin: 0 auto;
+    margin-top: 1rem;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: blueviolet;
+    color: white;
+    cursor: pointer;
+}
+
+hr {
+    border: 0px;
+    border-top: 1px solid lightgray;
+}
+
+.modal-container {
+    width: 10vw;
+    position: fixed;
+    top: 30px;
+    display: none;
+    z-index: 999;
+    justify-content: space-around;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    width: 50%;
+    height: 50%;
+}
+
+.active {
+    display: flex;
+}
+
+.active .modal {
+    animation: modal .4s;
+}
+
+@keyframes modal {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -60px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.modal span {
+    margin: 10px auto;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btns button {
+    font-size: medium;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.btnOK {
+    background-color: blue !important;
+}
+
+.btnClose {
+    background-color: brown !important;
+}
+
+@media (max-width: 500px) {
+    .modal {
+        padding: 10px;
+        width: 80%;
+    }
+
+    span,
+    .btns button {
+        font-size: smaller;
+    }
 }
