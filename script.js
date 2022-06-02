@@ -49,7 +49,6 @@ function openModal() {
     </div>
   `
 }
-
 function closeModal() {
   modal.classList.remove('active')
 }
@@ -134,17 +133,26 @@ function displayResults(weather) {
     weather.main.temp_max
   )}°c`
 
-  // Aqui eu estou salvando os dados da cidade pesquisada pelo usuario no localStorage
-  const saveLocalStorage = []
-  saveLocalStorage.push(weather)
-  localStorage.setItem('weather', JSON.stringify(saveLocalStorage))
-  localStorage.setItem('city', weather.name)
-  localStorage.setItem('country', weather.sys.country)
-  localStorage.setItem('temperature', temperature)
-  localStorage.setItem('weather_tempo', weather_tempo)
-  localStorage.setItem('low_high', low_high.innerText)
-  localStorage.setItem('time_now', time_now)
-  localStorage.setItem('date', date.innerText)
+    // Aqui eu estou salvando os dados da cidade pesquisada pelo usuario no localStorage
+    const saveLocalStorage = []
+    saveLocalStorage.push(weather)
+    localStorage.setItem('weather', JSON.stringify(saveLocalStorage))
+    localStorage.setItem('city', weather.name)
+    localStorage.setItem('country', weather.sys.country)
+    localStorage.setItem('temperature', temperature)
+    localStorage.setItem('weather_tempo', weather_tempo)
+    localStorage.setItem('low_high', low_high.innerText)
+    localStorage.setItem('time_now', time_now)
+    localStorage.setItem('date', date.innerText)
+
+    const resgatar = localStorage.getItem('weather')
+    if (resgatar) {
+      const resgatar_json = JSON.parse(resgatar)
+      console.log(resgatar_json)
+    }
+
+    sessionStorage.setItem('weather', JSON.stringify(saveLocalStorage))
+    sessionStorage.setItem('city', weather.name)
 }
 
 function dateBuilder(d) {
