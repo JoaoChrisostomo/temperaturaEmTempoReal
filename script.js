@@ -16,6 +16,7 @@ const weather_t = document.querySelector('.weather')
 const search_input = document.querySelector('.form-control')
 const search_button = document.querySelector('.btn')
 const low_high = document.querySelector('.low-high')
+const modal = document.querySelector('.modal-container')
 
 window.addEventListener('load', () => {
   //geolocation é para pegar a localização do usuario e pegar a latitude e longitude
@@ -36,19 +37,37 @@ window.addEventListener('load', () => {
   function showError(error) {
     alert(`erro: ${error.message}`)
   }
+
+  // function modalResult() {
+  //   if(setPosition === displayResults) {
+  //     modal.querySelector('.modal-body').innerHTML = 'Olá tudo bem?'
+  //   } else {
+  //     modal.querySelector('.modal-body').innerHTML = 'Olá tudo bem?'
+  //   }
+  // }
+  // modalResult()
+
 })
 
-
 // MODAL
-const modal = document.querySelector('.modal-container')
 
 function openModal() {
   modal.classList.add('active')
+  document.querySelector('.modal-body').innerHTML = `
+    <h2 class="modal-title">${capitalizeFirstLetter(city.innerHTML)}</h2>
+    <div class="date">${capitalizeFirstLetter(date.innerText)}</div>
+    <div class="modal-body">
+      <p>${weather_t.innerHTML}</p>
+      <p>${temp_number.innerHTML}°${temp_unit.innerHTML}</p>
+      <p>${low_high.innerHTML}</p>
+    </div>
+  `
 }
 
 function closeModal() {
   modal.classList.remove('active')
 }
+
 
 function coordResults(lat, long) {
   // aqui esta sendo passado a latitude e longitude
@@ -149,20 +168,6 @@ function displayResults(weather) {
   localStorage.setItem('time_now', time_now)
   localStorage.setItem('date', date.innerText)
 }
-
-// const saveLocalStorage = [
-//     {
-//         name: weather.name,
-//         country: weather.sys.country,
-//         temp: weather.main.temp,
-//         temp_min: weather.main.temp_min,
-//         temp_max: weather.main.temp_max,
-//         description: weather.weather[0].description,
-//         icon: weather.weather[0].icon,
-//         time: time_now
-//     }
-//   ]
-//     localStorage.setItem('weather', JSON.stringify(saveLocalStorage))
 
 function dateBuilder(d) {
   let days = [
