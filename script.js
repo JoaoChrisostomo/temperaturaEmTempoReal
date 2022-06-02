@@ -19,38 +19,24 @@ const low_high = document.querySelector('.low-high')
 const modal = document.querySelector('.modal-container')
 
 window.addEventListener('load', () => {
-  //geolocation é para pegar a localização do usuario e pegar a latitude e longitude
-
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(setPosition, showError) // o metodo navigator.geolocation do javascript pega a localização do usuario e passa para a função setPosition e showError caso não consiga pegar a localização do usuario
+    navigator.geolocation.getCurrentPosition(setPosition, showError)
   } else {
     alert('navegador não suporta geolozalicação')
   }
 
   function setPosition(position) {
-    // esta função pega a latitude e longitude
     console.log(position)
-    let lat = position.coords.latitude // aqui esta sendo passado a latitude
-    let long = position.coords.longitude // aqui esta sendo passado a longitude
-    coordResults(lat, long) //este coordResults é para pegar a latitude e longitude
+    let lat = position.coords.latitude
+    let long = position.coords.longitude
+    coordResults(lat, long)
   }
   function showError(error) {
     alert(`erro: ${error.message}`)
   }
-
-  // function modalResult() {
-  //   if(setPosition === displayResults) {
-  //     modal.querySelector('.modal-body').innerHTML = 'Olá tudo bem?'
-  //   } else {
-  //     modal.querySelector('.modal-body').innerHTML = 'Olá tudo bem?'
-  //   }
-  // }
-  // modalResult()
-
 })
 
 // MODAL
-
 function openModal() {
   modal.classList.add('active')
   document.querySelector('.modal-body').innerHTML = `
@@ -69,10 +55,9 @@ function closeModal() {
 }
 
 
+// Esta funcao eu utilizo o fetch para pegar a cidade e a temperatura da cidade pesquisada pelo usuario e passar para a função displayResults
 function coordResults(lat, long) {
-  // aqui esta sendo passado a latitude e longitude
   fetch(
-    // este fetch é para pegar a latitude e longitude
     `${api.base}weather?lat=${lat}&lon=${long}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`
   )
     .then(response => {
@@ -85,30 +70,27 @@ function coordResults(lat, long) {
       alert(error.message)
     })
     .then(response => {
-      // esse then é para pegar a resposta do fetch
       displayResults(response)
     })
 }
 
+// aqui eu estou adicionando o click pelo mouse e o click pela tecla enter e me retornando o resultado de cada cidade
 search_button.addEventListener('click', function () {
-  searchResults(search_input.value) // aqui esta sendo passado o valor do input
+  searchResults(search_input.value)
 })
-
 search_input.addEventListener('keypress', enter)
 function enter(event) {
-  // esta função é para pegar o enter
-  key = event.keyCode // aqui esta pegando o valor da tecla
+  key = event.keyCode
   if (key === 13) {
     console.log('você apertou o enter')
-    // se o usuario apertar enter
     searchResults(search_input.value)
   }
 }
 
+// A função searchResults é responsavel por pegar o valor do input e passar para a função coordResults
 function searchResults(city) {
-  // esta funcao searchResults é para pegar a cidade, e passar para a função displayResults
   fetch(
-    `${api.base}weather?q=${city}&lang=${api.lang}&units=${api.units}&APPID=${api.key}` // aqui esta sendo passado a cidade e a chave da api para pegar a cidade e a temperatura da cidade pesquisada pelo usuario
+    `${api.base}weather?q=${city}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`
   )
     .then(response => {
       if (!response.ok) {
@@ -123,40 +105,36 @@ function searchResults(city) {
       displayResults(response)
     })
 }
-
+// Aqui eu estou pegando o resultado da função coordResults e passando para a função displayResults
 function displayResults(weather) {
-  // esta função é para mostrar os resultados da pesquisa do usuario no html e mostrar a temperatura em graus celsius e fahrenheit
   console.log(weather)
-
   city.innerText = `${weather.name}, ${weather.sys.country}`
 
-  //aqui eu vou passar o horario atual de cada cidade
-  let time = new Date() // aqui esta pegando o horario atual
+  let time = new Date()
   let hour = time.getHours()
-  let minute = time.getMinutes() // aqui esta pegando o minuto atual
-  let ampm = hour >= 12 ? 'PM' : 'AM' // aqui esta pegando o AM ou PM
+  let minute = time.getMinutes()
+  let ampm = hour >= 12 ? 'PM' : 'AM'
   let time_now = `${hour}:${minute} ${ampm}`
   time.innerHTML = time_now
 
   let now = new Date()
-  date.innerText = dateBuilder(now) // aqui esta sendo passado a data atual para mostrar no html
+  date.innerText = dateBuilder(now)
 
   let iconName = weather.weather[0].icon
   container_img.innerHTML = `<img src="./icons/${iconName}.png">`
 
-  let temperature = `${Math.round(weather.main.temp)}` // aqui esta pegando a temperatura da cidade
+  let temperature = `${Math.round(weather.main.temp)}`
   temp_number.innerHTML = temperature
   temp_unit.innerHTML = `°c`
 
-  weather_tempo = weather.weather[0].description // aqui esta pegando o tempo da cidade pesquisada pelo usuario
-  weather_t.innerText = capitalizeFirstLetter(weather_tempo) // aqui esta sendo passado o valor da temperatura para o weather_t e a função capitalizeFirstLetter é para deixar a primeira letra maiuscula
+  weather_tempo = weather.weather[0].description
+  weather_t.innerText = capitalizeFirstLetter(weather_tempo)
 
   low_high.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(
-    // aqui esta pegando a temperatura minima e maxima e mostrando no html
     weather.main.temp_max
   )}°c`
 
-  // salvar os dados no localStorage
+  // Aqui eu estou salvando os dados da cidade pesquisada pelo usuario no localStorage
   const saveLocalStorage = []
   saveLocalStorage.push(weather)
   localStorage.setItem('weather', JSON.stringify(saveLocalStorage))
@@ -194,7 +172,7 @@ function dateBuilder(d) {
     'Dezembro'
   ]
 
-  let day = days[d.getDay()] //getDay: 0-6
+  let day = days[d.getDay()]
   let date = d.getDate()
   let month = months[d.getMonth()]
   let year = d.getFullYear()
@@ -202,7 +180,8 @@ function dateBuilder(d) {
   return `${day}, ${date} ${month} ${year}`
 }
 
-container_temp.addEventListener('click', changeTemp) // aqui esta adicionando o evento de
+// A ffunction changeTemp é responsavel por mudar a temperatura da cidade pesquisada pelo usuario
+container_temp.addEventListener('click', changeTemp)
 function changeTemp() {
   temp_number_now = temp_number.innerHTML
 
@@ -217,6 +196,7 @@ function changeTemp() {
   }
 }
 
+// A function capitalizeFirstLetter é responsavel por colocar a primeira letra da string em maiuscula
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
